@@ -3,7 +3,7 @@
 > 腾讯云 CloudBase 扩展插件包（.fpk）｜适用于 fnOS（飞牛 OS）等 NAS 应用中心手动安装
 > rclone 增量同步至 S3 兼容云存储 + 网页图库 + Cloudflare Tunnel / FRP 公网直连
 
-本仓库用于托管 `nas-cos-sync.fpk` 插件包与完整说明文档。插件包本体（约 55MB 二进制）不放入 Git 提交历史，按下方「下载与发布」方式获取并推送。
+本仓库用于托管 `nas-cos-sync.fpk` 插件包与完整说明文档。插件包本体（约 55MB 二进制）以 **Release 附件**形式发布。
 
 ## 功能特性
 
@@ -51,7 +51,7 @@ nas-cos-sync.fpk                     # gzip 压缩包（55,018,629 字节）
 
 ## 安装
 
-1. 在 NAS 应用中心（fnOS）选择「手动安装第三方包」，上传 `nas-cos-sync.fpk`（或先按「下载与发布」下载到本地再上传）
+1. 在 NAS 应用中心（fnOS）选择「手动安装第三方包」，上传 `nas-cos-sync.fpk`（从下方 Releases 下载）
 2. 安装完成后进入配置向导，填写云存储信息
 3. 修改配置后需在应用中心 **停止 → 再启动** 应用生效
 
@@ -100,19 +100,19 @@ curl http://NAS_IP:8899/api/sync
 
 ## 下载与发布
 
-插件包本体（55MB 二进制）不放入 Git 提交历史，通过以下方式获取与发布：
+插件包本体（约 55MB）以 Release 附件形式发布，直接下载：
 
 ```bash
-# 1. 下载（如链接过期，请从豆包会话附件中重新获取）
-curl -L -o nas-cos-sync.fpk "https://aka.doubaocdn.com/s/tRVBzv5qGE"
+# 方式一：Release 附件（推荐，长期有效）
+curl -L -o nas-cos-sync.fpk \
+  "https://github.com/cp4857971/nas-cos-sync/releases/download/v2.6.1/nas-cos-sync.fpk"
 
-# 2. 校验
-md5sum nas-cos-sync.fpk     # 67eb64889f2d0691e10c162f9faec123
-sha256sum nas-cos-sync.fpk  # cc147a97a3e909dfd0bd2e4b5bc1a17e193d57d8b3001dccf5688adf9bfce470
-
-# 3. 推送到本仓库（一键脚本）
-bash scripts/push-fpk.sh
+# 方式二：校验完整性（GitHub 已自动生成 SHA-256）
+sha256sum nas-cos-sync.fpk
+# cc147a97a3e909dfd0bd2e4b5bc1a17e193d57d8b3001dccf5688adf9bfce470
 ```
+
+发布新版本：`bash scripts/push-fpk.sh [fpk路径] [版本号]`（自动放入 `releases/` 并打 tag；Release 附件可在 GitHub Releases 页面附加）。
 
 ### 校验值
 
@@ -126,7 +126,7 @@ bash scripts/push-fpk.sh
 
 | 版本 | 说明 |
 |---|---|
-| 2.6.1 | 当前版本 |
+| [v2.6.1](https://github.com/cp4857971/nas-cos-sync/releases/tag/v2.6.1) | 当前版本（Release 附件：nas-cos-sync.fpk） |
 
 ## 脚本速览
 
